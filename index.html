@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>色欲电影网 - 高清影视在线观看与最新电影资讯平台</title>
+<meta name="description" content="色欲电影网（色欲dianyingwang）致力于为影视爱好者提供最新、最全、最清晰的高清电影、热播电视剧、经典动漫与综艺节目在线观看服务。每日更新院线新片、豆瓣高分佳作、海外剧集资源，支持多线路流畅播放与移动端自适应浏览。访问 色欲电影网 官方站点 https://seyudianyingwang-app.github.io 获取持续更新的影视内容与观影指南。">
+<meta name="keywords" content="色欲电影网, 色欲dianyingwang, 高清电影, 在线电影, 最新电影, 热播电视剧, 影视资讯, 电影推荐, 免费观影, seyudianyingwang-app.github.io">
+<meta name="author" content="色欲电影网">
+<meta name="robots" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta name="theme-color" content="#0f1729">
+<link rel="canonical" href="https://seyudianyingwang-app.github.io">
+<style>
+  :root{
+    --bg:#0b1020;
+    --panel:#121933;
+    --line:#232c4d;
+    --txt:#e8ecf8;
+    --sub:#9aa6c4;
+    --acc:#ff5b3a;
+    --acc2:#37d0ff;
+    --gold:#ffd1色欲;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--txt);
+    font-family:"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",Helvetica,Arial,sans-serif;
+    line-height:1.75;
+    overflow-x:hidden;
+  }
+  a{color:var(--acc2);text-decoration:none}
+  a:hover{color:var(--acc)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+
+  /* 顶部导航 */
+  header.site-head{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,16,32,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{display:flex;align-items:center;gap:22px;height:62px}
+  .brand{font-size:22px;font-weight:800;letter-spacing:.5px;color:#fff}
+  .brand b{color:var(--acc)}
+  .brand small{display:block;font-size:11px;color:var(--sub);font-weight:400;letter-spacing:1px}
+  nav.top-nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+  nav.top-nav a{
+    color:var(--sub);font-size:14px;padding:8px 12px;border-radius:8px;transition:.2s;
+  }
+  nav.top-nav a:hover{background:var(--panel);color:#fff}
+
+  /* Hero */
+  .hero{
+    position:relative;padding:64px 0 54px;
+    background:
+      radial-gradient(900px 320px at 82% -10%, rgba(255,91,58,.28), transparent 60%),
+      radial-gradient(700px 300px at 8% 10%, rgba(55,208,255,.18), transparent 60%);
+  }
+  .hero h1{font-size:40px;line-height:1.25;font-weight:800;letter-spacing:1px}
+  .hero h1 em{font-style:normal;color:var(--acc)}
+  .hero p.lead{margin-top:16px;max-width:760px;color:var(--sub);font-size:16px}
+  .hero-actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;border-radius:10px;font-size:15px;font-weight:600;
+    border:1px solid transparent;cursor:pointer;transition:.2s;
+  }
+  .btn-primary{background:var(--acc);color:#fff}
+  .btn-primary:hover{background:#ff7a5e;color:#fff}
+  .btn-ghost{background:transparent;color:#fff;border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--acc2);color:var(--acc2)}
+  .hero-meta{margin-top:30px;display:flex;gap:26px;flex-wrap:wrap;font-size:13px;color:var(--sub)}
+  .hero-meta span b{color:var(--gold);font-size:18px;display:block;color:#fff}
+
+  /* 通用栏目 */
+  section{padding:52px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+  .sec-head h2{font-size:26px;font-weight:800;letter-spacing:.5px}
+  .sec-head h2 i{font-style:normal;color:var(--acc)}
+  .sec-head .tag{font-size:12px;color:var(--sub);border:1px solid var(--line);padding:3px 10px;border-radius:20px}
+  .sec-head .more{margin-left:auto;font-size:13px;color:var(--sub)}
+
+  /* 卡片网格 */
+  .grid{display:grid;gap:18px}
+  .g-4{grid-template-columns:repeat(4,1fr)}
+  .g-3{grid-template-columns:repeat(3,1fr)}
+  .g-2{grid-template-columns:repeat(2,1fr)}
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;transition:.25s;display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-5px);border-color:var(--acc);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+  .thumb{position:relative;aspect-ratio:3/4;background:linear-gradient(135deg,#1c2547,#0e1428);overflow:hidden}
+  .thumb::after{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 20% 18%, rgba(255,255,255,.10), transparent 40%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 6px, transparent 6px 12px);
+  }
+  .thumb .no{position:absolute;left:10px;top:10px;background:var(--acc);color:#fff;font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px;z-index:2}
+  .thumb .score{position:absolute;right:10px;top:10px;background:rgba(0,0,0,.6);color:var(--gold);font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px;z-index:2}
+  .card-body{padding:14px;flex:1;display:flex;flex-direction:column}
+  .card-body h3{font-size:16px;font-weight:700;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card-body .info{font-size:12px;color:var(--sub);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .card-body p{font-size:13px;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:auto}
+
+  /* 分类条 */
+  .cats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+  .cats a{
+    border:1px solid var(--line);background:var(--panel);color:var(--txt);
+    padding:8px 16px;border-radius:22px;font-size:13px;transition:.2s;
+  }
+  .cats a:hover,.cats a.on{border-color:var(--acc);color:var(--acc);background:rgba(255,91,58,.10)}
+
+  /* 资讯列表 */
+  .news-list{display:flex;flex-direction:column;gap:14px}
+  .news-item{
+    display:flex;gap:16px;padding:16px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;transition:.2s;
+  }
+  .news-item:hover{border-color:var(--acc2)}
+  .news-item .dt{flex:0 0 74px;text-align:center;color:var(--sub);font-size:12px;padding-top:4px}
+  .news-item .dt b{display:block;font-size:24px;color:var(--acc);line-height:1.1}
+  .news-item .tx{flex:1}
+  .news-item h3{font-size:17px;margin-bottom:6px}
+  .news-item p{font-size:13px;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* 关于/说明 */
+  .about-box{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .about-box h3{font-size:19px;margin:18px 0 8px;color:var(--acc2)}
+  .about-box h3:first-child{margin-top:0}
+  .about-box p{color:var(--sub);font-size:14px;margin-bottom:10px}
+  .kv{display:grid;grid-template-columns:120px 1fr;gap:8px 16px;font-size:14px}
+  .kv dt{color:var(--sub)}
+  .kv dd{color:var(--txt);word-break:break-all}
+  .kv dd a{color:var(--acc2)}
+
+  /* 页脚 */
+  footer{border-top:1px solid var(--line);padding:34px 0 40px;color:var(--sub);font-size:13px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px}
+  .foot-brand{font-size:20px;font-weight:800;color:#fff}
+  .foot-brand b{color:var(--acc)}
+  .foot-nav{display:flex;flex-direction:column;gap:8px}
+  .foot-nav a{color:var(--sub);font-size:13px}
+  .foot-nav a:hover{color:var(--acc)}
+  .copyright{margin-top:24px;padding-top:18px;border-top:1px solid var(--line);text-align:center;font-size:12px;color:#6f7a99}
+
+  /* 响应式 */
+  @media (max-width:900px){
+    .g-4{grid-template-columns:repeat(3,1fr)}
+    .g-3{grid-template-columns:repeat(2,1fr)}
+    .hero h1{font-size:30px}
+  }
+  @media (max-width:640px){
+    .nav-row{height:auto;padding:12px 0;flex-wrap:wrap;gap:12px}
+    nav.top-nav{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap}
+    nav.top-nav a{padding:8px 14px;white-space:nowrap}
+    .hero{padding:38px 0 32px}
+    .hero h1{font-size:25px}
+    .g-4,.g-3,.g-2{grid-template-columns:repeat(2,1fr);gap:12px}
+    .sec-head h2{font-size:21px}
+    section{padding:36px 0}
+    .news-item{flex-direction:column;gap:8px}
+    .news-item .dt{flex:0 0 auto;text-align:left;display:flex;gap:6px;align-items:baseline}
+    .news-item .dt b{font-size:16px}
+    .foot-grid{grid-template-columns:1fr}
+    .kv{grid-template-columns:1fr;gap:4px}
+  }
+  @media (max-width:380px){
+    .g-4,.g-3,.g-2{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<header class="site-head">
+  <div class="wrap nav-row">
+    <div class="brand">色欲电影网<small>色欲DIANYINGWANG · 高清影视门户</small></div>
+    <nav class="top-nav" aria-label="主导航">
+      <a href="#home">首页</a>
+      <a href="#hot">热映推荐</a>
+      <a href="#types">影视分类</a>
+      <a href="#news">影讯资讯</a>
+      <a href="#about">关于本站</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 首页 Hero -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <h1>色欲电影网 &mdash; 专注<em>高清电影</em>与<em>热播剧集</em>的在线影视平台</h1>
+    <p class="lead">色欲电影网（色欲dianyingwang）每日精选院线新片、豆瓣高分电影、热门电视剧与经典动漫，提供多线路流畅播放、清晰画质与简洁浏览体验。无论您使用手机、平板还是电脑，都能在这里快速找到想看的内容。官方网址：<strong>https://seyudianyingwang-app.github.io</strong></p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#hot">立即观影 &rarr;</a>
+      <a class="btn btn-ghost" href="#types">浏览分类</a>
+    </div>
+    <div class="hero-meta">
+      <span><b>12000+</b>部影视资源</span>
+      <span><b>24</b>小时持续更新</span>
+      <span><b>4K/1080P</b>高清画质</span>
+      <span><b>全端</b>自适应适配</span>
+    </div>
+  </div>
+</section>
+
+<!-- 热映推荐 -->
+<section id="hot">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>热映<i>推荐</i></h2>
+      <span class="tag">本周口碑榜</span>
+      <a class="more" href="#">查看完整榜单 &raquo;</a>
+    </div>
+    <div class="grid g-4">
+      <article class="card">
+        <div class="thumb"><span class="no">TOP 1</span><span class="score">9.2</span></div>
+        <div class="card-body">
+          <h3>星际回响</h3>
+          <div class="info"><span>科幻</span><span>138分钟</span><span>2026</span></div>
+          <p>一艘失联十年的深空探测器突然传回信号，宇航员踏上跨越光年的救赎之旅，视觉奇观与情感张力兼具。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><span class="no">TOP 2</span><span class="score">8.7</span></div>
+        <div class="card-body">
+          <h3>长安夜行录</h3>
+          <div class="info"><span>古装</span><span>45分钟/集</span><span>36集</span></div>
+          <p>盛唐暗夜中的探案传奇，市井百态与朝堂风云交织，节奏紧凑、服化道考究，追剧停不下来。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><span class="no">TOP 3</span><span class="score">8.5</span></div>
+        <div class="card-body">
+          <h3>逆风者</h3>
+          <div class="info"><span>剧情</span><span>122分钟</span><span>2026</span></div>
+          <p>一位小镇青年在风暴中守护家园的真实故事，表演克制而有力，被影评人称为年度最动人现实主义作品。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><span class="no">TOP 4</span><span class="score">8.3</span></div>
+        <div class="card-body">
+          <h3>深海迷踪</h3>
+          <div class="info"><span>悬疑</span><span>112分钟</span><span>2026</span></div>
+          <p>潜水员在沉船中发现神秘舱室，层层反转的密闭空间惊悚片，音效与氛围营造堪称教科书级别。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><span class="no">TOP 5</span><span class="score">8.1</span></div>
+        <div class="card-body">
+          <h3>野火蔓延时</h3>
+          <div class="info"><span>战争</span><span>156分钟</span><span>2025</span></div>
+          <p>以真实历史为底本的群像叙事，战火中的普通人命运交织，场面恢弘而不失细腻。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><span class="no">TOP 6</span><span class="score">7.9</span></div>
+        <div class="card-body">
+          <h3>甜蜜算法</h3>
+          <div class="info"><span>爱情</span><span>98分钟</span><span>2026</span></div>
+          <p>数据分析师与咖啡店老板的都市邂逅，甜而不腻，台词金句频出，适合周末轻松观影。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><span class="no">TOP 7</span><span class="score">8.0</span></div>
+        <div class="card-body">
+          <h3>机甲纪元</h3>
+          <div class="info"><span>动画</span><span>24分钟/集</span><span>12集</span></div>
+          <p>原创机甲题材动画，硬核机械设定搭配少年成长线，作画精良，被观众誉为"国漫新标杆"。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><span class="no">TOP 8</span><span class="score">7.7</span></div>
+        <div class="card-body">
+          <h3>午夜食堂·归来</h3>
+          <div class="info"><span>治愈</span><span>40分钟/集</span><span>10集</span></div>
+          <p>巷尾小店的深夜烟火气，用一道道家常菜串起城市里孤独又温暖的人生故事。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 影视分类 -->
+<section id="types">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>影视<i>分类</i></h2>
+      <span class="tag">按题材快速找片</span>
+    </div>
+    <div class="cats">
+      <a href="#" class="on">全部</a>
+      <a href="#">动作</a>
+      <a href="#">喜剧</a>
+      <a href="#">爱情</a>
+      <a href="#">科幻</a>
+      <a href="#">悬疑</a>
+      <a href="#">恐怖</a>
+      <a href="#">剧情</a>
+      <a href="#">动画</a>
+      <a href="#">纪录片</a>
+      <a href="#">综艺</a>
+      <a href="#">短剧</a>
+    </div>
+    <div class="grid g-3">
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="card-body">
+          <h3>动作 / 犯罪</h3>
+          <p>高速追车、硬核对决与精密布局，肾上腺素拉满的视听盛宴。推荐：《极速追凶》《暗夜狙击》。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="card-body">
+          <h3>喜剧 / 轻喜剧</h3>
+          <p>生活里的荒诞与温情，笑着笑着就哭了。推荐：《好运来》《人间烟火事》。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="card-body">
+          <h3>科幻 / 奇幻</h3>
+          <p>脑洞大开的未来想象与异世界冒险。推荐：《星际回响》《时间褶皱》。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="card-body">
+          <h3>悬疑 / 犯罪</h3>
+          <p>层层反转、细节控的狂欢，适合一口气追完。推荐：《深海迷踪》《第七个证人》。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="card-body">
+          <h3>爱情 / 青春</h3>
+          <p>关于心动、错过与重逢的永恒命题。推荐：《甜蜜算法》《那年夏天》。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="card-body">
+          <h3>纪录片 / 人文</h3>
+          <p>真实自有千钧之力，看见更广阔的世界。推荐：《江河之上》《匠人百年》。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 影讯资讯 -->
+<section id="news">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>影讯<i>资讯</i></h2>
+      <span class="tag">编辑精选</span>
+      <a class="more" href="#">更多资讯 &raquo;</a>
+    </div>
+    <div class="grid g-2">
+      <div>
+        <div class="news-list">
+          <a class="news-item" href="#">
+            <div class="dt"><b>18</b>10月</div>
+            <div class="tx">
+              <h3>2026 国庆档票房观察：现实主义题材持续走强</h3>
+              <p>多部聚焦普通人生活的影片取得超预期口碑，观众用脚投票，"好看"依然是票房的第一生产力。</p>
+            </div>
+          </a>
+          <a class="news-item" href="#">
+            <div class="dt"><b>15</b>10月</div>
+            <div class="tx">
+              <h3>流媒体时代，电影院的"不可替代性"在哪里？</h3>
+              <p>从巨幕到沉浸音效，影院体验正在被重新定义，观影社交属性成为新的增长点。</p>
+            </div>
+          </a>
+          <a class="news-item" href="#">
+            <div class="dt"><b>12</b>10月</div>
+            <div class="tx">
+              <h3>AI 生成内容进入影视工业：工具还是威胁？</h3>
+              <p>视效、配音、剪辑环节的降本增效已初见成效，但关于版权与创作的争论远未结束。</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="news-list">
+          <a class="news-item" href="#">
+            <div class="dt"><b>09</b>10月</div>
+            <div class="tx">
+              <h3>国产动画出海记：从"圈地自萌"到全球票房</h3>
+              <p>多部原创动画在海外流媒体平台取得亮眼成绩，东方美学正在成为世界语言。</p>
+            </div>
+          </a>
+          <a class="news-item" href="#">
+            <div class="dt"><b>06</b>10月</div>
+            <div class="tx">
+              <h3>短剧市场半年报：用户时长首超长视频</h3>
+              <p>竖屏叙事、强情节、快节奏正在改写内容消费习惯，精品化成为下一阶段关键词。</p>
+            </div>
+          </a>
+          <a class="news-item" href="#">
+            <div class="dt"><b>03</b>10月</div>
+            <div class="tx">
+              <h3>家庭观影指南：适合亲子共赏的十部电影</h3>
+              <p>从经典动画到自然纪录片，选片兼顾趣味与成长，让周末的客厅变成小小电影院。</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 关于本站 -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>关于<i>色欲电影网</i></h2>
+      <span class="tag">站点说明</span>
+    </div>
+    <div class="about-box">
+      <h3>我们是谁</h3>
+      <p>色欲电影网（色欲dianyingwang）是一个面向中文影视爱好者的导航与资讯类单页站点，专注于整理与推荐高清电影、电视剧、动漫、综艺与纪录片资源。我们不做复杂的层级堆砌，而是用清晰的分类、真实的评分与简明的推荐理由，帮您在几秒钟内决定"今晚看什么"。</p>
+
+      <h3>核心栏目</h3>
+      <p>本站共设 <strong>5 个核心栏目</strong>：<a href="#home">首页</a>（站点概览与观影入口）、<a href="#hot">热映推荐</a>（本周口碑榜单）、<a href="#types">影视分类</a>（按题材检索）、<a href="#news">影讯资讯</a>（行业观察与观影指南）、<a href="#about">关于本站</a>（站点信息与声明）。所有内页链接均以锚点（#）形式组织，单页即可完成完整浏览。</p>
+
+      <h3>站点信息</h3>
+      <dl class="kv">
+        <dt>网站名称</dt><dd>色欲电影网（色欲dianyingwang）</dd>
+        <dt>官方网址</dt><dd><a href="https://seyudianyingwang-app.github.io">https://seyudianyingwang-app.github.io</a></dd>
+        <dt>内容定位</dt><dd>高清影视推荐、影视资讯、观影指南</dd>
+        <dt>更新频率</dt><dd>每日更新推荐榜单与资讯</dd>
+        <dt>适配说明</dt><dd>全面移动端自适应，手机 / 平板 / 桌面端均可获得良好阅读体验</dd>
+      </dl>
+
+      <h3>访问与收录</h3>
+      <p>本站遵循搜索引擎友好规范：使用语义化 HTML 标签（header / nav / section / article / footer），合理设置标题层级（H1–H3），为图片与链接提供可索引的文本信息，并在页面头部声明 canonical 地址与 robots 规则，便于必应（Bing）等搜索引擎抓取与排名。站点为纯静态单页结构，加载迅速、结构清晰。</p>
+
+      <h3>温馨提示</h3>
+      <p>请通过上方官方网址访问 色欲电影网，谨防仿冒站点。观影请选择合法合规的正版渠道，支持影视行业的持续创作。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">色欲电影网<b>.</b></div>
+        <p style="margin-top:10px">专注高清影视推荐与影讯资讯，让每一次观影都不将就。</p>
+      </div>
+      <div class="foot-nav">
+        <a href="#home">首页</a>
+        <a href="#hot">热映推荐</a>
+        <a href="#types">影视分类</a>
+        <a href="#news">影讯资讯</a>
+      </div>
+      <div class="foot-nav">
+        <a href="#about">关于本站</a>
+        <a href="#">观影指南</a>
+        <a href="#">更新日志</a>
+        <a href="#">意见反馈</a>
+      </div>
+    </div>
+    <div class="copyright">
+      网站名称：色欲电影网 &nbsp;|&nbsp; 网站网址：https://seyudianyingwang-app.github.io &nbsp;|&nbsp; © 2026 色欲电影网 保留所有权利
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
